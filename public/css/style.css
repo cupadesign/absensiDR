@@ -1,0 +1,52 @@
+/* RESET DASAR */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* HTML & BODY */
+html,
+body{
+    width: 100%;
+    overflow-x: hidden;
+
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    font-size: 16px;
+}
+
+/* AREA UTAMA */
+.container{
+    width: 100%;
+
+    /* batas maksimal biar enak di HP */
+    max-width: 480px;
+
+    /* center */
+    margin: 0 auto;
+
+    /* jarak samping */
+    padding-left: 16px;
+    padding-right: 16px;
+
+    /* jarak atas bawah */
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    min-height: 100vh;
+}
+
+/* RESPONSIVE TAMBAHAN */
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+input,
+button,
+textarea,
+select{
+    width: 100%;
+    font-size: 16px;
+}
