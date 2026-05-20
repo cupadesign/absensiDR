@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 //Dashboard user
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard.index');
 });
 
 //Halaman awal web
@@ -21,4 +21,8 @@ Route::post('/login', function () {
 
 Route::post('/test', function () {
     return 'TEST BERHASIL';
+});
+//Halaman User index
+Route::get('/user', function () {
+    return view('user.index');
 });
