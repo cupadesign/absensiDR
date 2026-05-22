@@ -1,4 +1,4 @@
-<nav class="bg-white shadow p-4">
+<nav class="bg-white shadow p-2">
 
     <div class="flex justify-between">
 
