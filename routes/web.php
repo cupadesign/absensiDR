@@ -1,6 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
+
+/*
+|--------------------------------------------------------------------------
+| WEB ROUTES
+|--------------------------------------------------------------------------
+*/
+Route::get('/', function () {
+
+    return redirect('/login');
+
+});
+
 
 /*
 |--------------------------------------------------------------------------
@@ -8,22 +21,45 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
+Route::get(
+    '/login',
+    [LoginController::class, 'index']
+)->name('login');
 
-Route::post('/login', function () {
-    return 'LOGIN BERHASIL';
-});
+Route::post(
+    '/login/check-user',
+    [LoginController::class, 'checkUser']
+);
+
+Route::post(
+    '/login',
+    [LoginController::class, 'authenticate']
+);
+
+Route::post(
+    '/create-password',
+    [LoginController::class, 'createPassword']
+);
+
+Route::post(
+    '/logout',
+    [LoginController::class, 'logout']
+);
 
 /*
 |--------------------------------------------------------------------------
-| DASHBOARD
+| DASHBOARD ADMIN
 |--------------------------------------------------------------------------
 */
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
+Route::middleware('auth')->group(function () {
+
+    Route::get('/dashboard', function () {
+
+        return view('dashboard.index');
+
+    });
+
 });
 
 /*
@@ -32,8 +68,14 @@ Route::get('/dashboard', function () {
 |--------------------------------------------------------------------------
 */
 
-Route::get('/absensi', function () {
-    return view('absensi.index');
+Route::middleware('auth')->group(function () {
+
+    Route::get('/absensi', function () {
+
+        return view('absensi.index');
+
+    });
+
 });
 
 /*
@@ -42,39 +84,95 @@ Route::get('/absensi', function () {
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('user')->group(function () {
+Route::middleware('auth')
+    ->prefix('user')
+    ->group(function () {
 
-    // DASHBOARD
-    Route::get('/', function () {
-        return view('user.index');
+        /*
+        |--------------------------------------------------------------------------
+        | DASHBOARD USER
+        |--------------------------------------------------------------------------
+        */
+
+        Route::get('/', function () {
+
+            return view('user.index');
+
+        });
+
+        /*
+        |--------------------------------------------------------------------------
+        | HISTORY
+        |--------------------------------------------------------------------------
+        */
+
+        Route::get('/history', function () {
+
+            return view('user.history');
+
+        });
+
+        /*
+        |--------------------------------------------------------------------------
+        | ABSEN
+        |--------------------------------------------------------------------------
+        */
+
+        Route::get('/absen', function () {
+
+            return view('user.absen');
+
+        });
+
+        /*
+        |--------------------------------------------------------------------------
+        | ABSEN DETAIL
+        |--------------------------------------------------------------------------
+        */
+
+        Route::get('/absen/detail', function () {
+
+            return view('user.absen-detail');
+
+        });
+
+        /*
+        |--------------------------------------------------------------------------
+        | INBOX
+        |--------------------------------------------------------------------------
+        */
+
+        Route::get('/inbox', function () {
+
+            return view('user.inbox');
+
+        });
+
+        /*
+        |--------------------------------------------------------------------------
+        | PROFILE
+        |--------------------------------------------------------------------------
+        */
+
+        Route::get('/profile', function () {
+
+            return view('user.profile');
+
+        });
+
+        /*
+        |--------------------------------------------------------------------------
+        | HOME
+        |--------------------------------------------------------------------------
+        */
+
+        Route::get('/home', function () {
+
+            return view('user.home');
+
+        });
+
     });
-
-    // HISTORY
-    Route::get('/history', function () {
-        return view('user.history');
-    });
-
-    // ABSEN
-    Route::get('/absen', function () {
-        return view('user.absen');
-    });
-
-    // ABSEN DETAIL
-    Route::get('/absen/detail', function () {
-        return view('user.absen-detail');
-    });
-
-    // INBOX
-    Route::get('/inbox', function () {
-        return view('user.inbox');
-    });
-
-    // PROFILE
-    Route::get('/profile', function () {
-        return view('user.profile');
-    });
-
-});
 
 /*
 |--------------------------------------------------------------------------
@@ -83,5 +181,7 @@ Route::prefix('user')->group(function () {
 */
 
 Route::post('/test', function () {
+
     return 'TEST BERHASIL';
+
 });

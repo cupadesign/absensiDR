@@ -1,19 +1,13 @@
 @extends('layouts.mobile')
+
 @section('title', 'Dashboard')
+
 @section('content')
 
-<div class="p-4 space-y-4 ">
+<div class="p-4 space-y-4">
 
     {{-- USER CARD --}}
-    <div
-        class="
-            bg-gradient-to-r from-green-500 to-emerald-600
-            text-white
-            rounded-3xl
-            p-5
-            shadow-xl
-        "
-    >
+    <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-3xl p-5 shadow-xl">
 
         <div class="flex justify-between items-start">
 
@@ -33,15 +27,7 @@
 
             </div>
 
-            <div
-                class="
-                    bg-white/20
-                    backdrop-blur-md
-                    px-3 py-1
-                    rounded-full
-                    text-xs
-                "
-            >
+            <div class="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs">
                 Aktif
             </div>
 
@@ -50,15 +36,7 @@
     </div>
 
     {{-- PROGRESS --}}
-    <div
-        class="
-            bg-white/70 backdrop-blur-md
-            border border-white/40
-            rounded-3xl
-            p-4
-            shadow-lg
-        "
-    >
+    <div class="bg-white/70 backdrop-blur-md border border-white/40 rounded-3xl p-4 shadow-lg">
 
         <div class="flex justify-between mb-3">
 
@@ -75,13 +53,7 @@
         {{-- BAR --}}
         <div class="w-full bg-gray-200 rounded-full h-3 mb-4">
 
-            <div
-                class="
-                    bg-gradient-to-r from-green-500 to-emerald-600
-                    h-3 rounded-full
-                "
-                style="width: 58%"
-            ></div>
+            <div class="bg-gradient-to-r from-green-500 to-emerald-600 h-3 rounded-full" style="width: 58%"></div>
 
         </div>
 
@@ -146,17 +118,7 @@
         <div class="space-y-3">
 
             {{-- CARD --}}
-            <a
-                href="#"
-                class="
-                    block
-                    bg-white
-                    rounded-3xl
-                    p-4
-                    shadow-sm
-                    border border-gray-100
-                "
-            >
+            <a href="#" class="block bg-white rounded-3xl p-4 shadow-sm border border-gray-100">
 
                 <div class="flex justify-between items-center">
 
@@ -172,15 +134,7 @@
 
                     </div>
 
-                    <div
-                        class="
-                            bg-red-100
-                            text-red-600
-                            text-xs
-                            px-3 py-1
-                            rounded-full
-                        "
-                    >
+                    <div class="bg-red-100 text-red-600 text-xs px-3 py-1 rounded-full">
                         Belum
                     </div>
 
@@ -189,17 +143,7 @@
             </a>
 
             {{-- CARD --}}
-            <a
-                href="#"
-                class="
-                    block
-                    bg-white
-                    rounded-3xl
-                    p-4
-                    shadow-sm
-                    border border-gray-100
-                "
-            >
+            <a href="#" class="block bg-white rounded-3xl p-4 shadow-sm border border-gray-100">
 
                 <div class="flex justify-between items-center">
 
@@ -215,15 +159,7 @@
 
                     </div>
 
-                    <div
-                        class="
-                            bg-green-100
-                            text-green-600
-                            text-xs
-                            px-3 py-1
-                            rounded-full
-                        "
-                    >
+                    <div class="bg-green-100 text-green-600 text-xs px-3 py-1 rounded-full">
                         Selesai
                     </div>
 

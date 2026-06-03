@@ -7,15 +7,7 @@
 <div class="p-4 space-y-4">
 
     {{-- PROFILE CARD --}}
-    <div
-        class="
-            bg-gradient-to-r from-green-500 to-emerald-600
-            rounded-3xl
-            p-6
-            text-white
-            shadow-xl
-        "
-    >
+    <div class="bg-gradient-to-r from-green-500 to-emerald-600 rounded-3xl p-6 text-white shadow-xl">
 
         <div class="flex flex-col items-center text-center">
 
@@ -23,13 +15,7 @@
             <img
                 src="{{ asset('images/logo.jpg') }}"
                 alt="Profile"
-                class="
-                    w-24 h-24
-                    rounded-full
-                    border-4 border-white/30
-                    shadow-lg
-                    object-cover
-                "
+                class="w-24 h-24 rounded-full border-4 border-white/30 shadow-lg object-cover"
             >
 
             {{-- NAMA --}}
@@ -43,16 +29,7 @@
             </p>
 
             {{-- STATUS --}}
-            <div
-                class="
-                    mt-4
-                    bg-white/20
-                    backdrop-blur-md
-                    px-4 py-2
-                    rounded-full
-                    text-sm
-                "
-            >
+            <div class="mt-4 bg-white/20 backdrop-blur-md px-4 py-2 rounded-full text-sm">
                 Akun Aktif
             </div>
 
@@ -61,16 +38,7 @@
     </div>
 
     {{-- INFORMASI AKUN --}}
-    <div
-        class="
-            bg-white/70
-            backdrop-blur-md
-            border border-white/40
-            rounded-3xl
-            p-4
-            shadow-lg
-        "
-    >
+    <div class="bg-white/70 backdrop-blur-md border border-white/40 rounded-3xl p-4 shadow-lg">
 
         <h3 class="font-bold text-lg text-gray-800 mb-4">
             Informasi Akun
@@ -159,16 +127,7 @@
     </div>
 
     {{-- SISTEM --}}
-    <div
-        class="
-            bg-white/70
-            backdrop-blur-md
-            border border-white/40
-            rounded-3xl
-            p-4
-            shadow-lg
-        "
-    >
+    <div class="bg-white/70 backdrop-blur-md border border-white/40 rounded-3xl p-4 shadow-lg">
 
         <h3 class="font-bold text-lg text-gray-800 mb-4">
             Informasi Sistem
@@ -220,23 +179,14 @@
     </div>
 
     {{-- LOGOUT --}}
-    <button
-        class="
-            w-full
-            py-4
-            rounded-3xl
-            bg-red-500
-            text-white
-            font-bold
-            shadow-lg
-            hover:bg-red-600
-            transition-all
-        "
-    >
-
-        Logout
-
-    </button>
+    <!-- OBJEK: FORM LOGOUT -->
+    <form action="/logout" method="POST" onsubmit="return confirm('Yakin ingin logout?')">
+        @csrf
+        <!-- OBJEK: BUTTON LOGOUT -->
+        <button class=" w-full py-4 rounded-3xl bg-red-500 text-white font-bold shadow-lg hover:bg-red-600 transition-all ">
+            Logout
+        </button>
+    </form>
 
 </div>
 

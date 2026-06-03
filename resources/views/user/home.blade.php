@@ -1,19 +1,18 @@
-@extends('layouts.mobile
-@section('title', 'Home
+@extends('layouts.mobile')
+@section('title', 'Home')
 @section('content')
 
 <div class="p-4 space-y-4">
 
     {{-- USER CARD --}}
-    <div
-        class="bg-white/70 backdrop-blur-md border border-white/40 rounded-3xl p-4 shadow-lg"
+    <div class="bg-white/70 backdrop-blur-md border border-white/40 rounded-3xl p-4 shadow-lg"
     >
 
         <div class="flex items-center justify-between">
 
             <div>
                 <h2 class="text-xl font-bold text-gray-800">
-                    Selamat Datang
+                    Selamat Datang 2
                 </h2>
 
                 <p class="text-gray-500">
@@ -49,12 +48,8 @@
             hover:scale-[1.02]
             active:scale-95
             transition-all duration-300
-            animate-pulse
-        "
-    >
-
+            animate-pulse">
         ABSEN SEKARANG
-
     </button>
 
     {{-- INFO --}}
