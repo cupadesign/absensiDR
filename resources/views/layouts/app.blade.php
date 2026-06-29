@@ -22,8 +22,7 @@
 
         <div class="flex-1">
 
-            {{-- NAVBAR --}}
-            @include('layouts.partials.navbar')
+            
 
             {{-- CONTENT --}}
             <main class="p-6">

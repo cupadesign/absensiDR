@@ -35,7 +35,9 @@ return new class extends Migration
 
             $table->string('TOKEN')->nullable();
 
-            $table->timestamps();
+            $table->timestamp('CREATED_AT')->nullable();
+
+            $table->timestamp('UPDATED_AT')->nullable();
 
         });
     }

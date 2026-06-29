@@ -60,7 +60,7 @@
             </div>
 
             {{-- ERROR --}}
-            @if(session('error'))
+            @if(!empty($error))
 
                 <div
                     class="
@@ -74,14 +74,13 @@
                         mb-4
                     "
                 >
-                    {{ session('error') }}
+                    {{ $error }}
                 </div>
 
             @endif
 
             {{-- FORM --}}
-            <form
-                method="POST"
+            <form method="POST"
                 action="/login"
                 class="space-y-5"
             >
@@ -139,6 +138,19 @@
                 >
                     Login
                 </button>
+
+                {{-- Text Button --}}
+                <a href="/login" 
+                    class="
+                        block
+                        text-center
+                        text-sm
+                        text-green-600
+                        hover:underline
+                    "
+                    >
+                    Kembali ke halaman login
+                </a>
 
             </form>
 

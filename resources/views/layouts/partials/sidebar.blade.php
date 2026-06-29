@@ -21,7 +21,7 @@
 
             </a>
         </li>
-
+        
         {{-- ABSENSI --}}
         <li>
             <a
@@ -40,12 +40,29 @@
             </a>
         </li>
 
+        {{-- KELOLA RUANGAN --}}
+        <li>
+            <a
+                href="/ruangan"
+                class="flex items-center justify-center group-hover:justify-start gap-4 h-14 px-4 rounded-xl hover:bg-green-50 transition-all duration-300"
+            >
+
+                <i class="fa-solid fa-windows text-xl text-green-700 w-6 text-center"></i>
+
+                <span
+                    class="hidden group-hover:block whitespace-nowrap font-medium font-bold"
+                >
+                    RUANGAN
+                </span>
+
+            </a>
+        </li>
+
         {{-- USERS --}}
         <li>
             <a
-                href="/users"
-                class="flex items-center justify-center group-hover:justify-start gap-4 h-14 px-4 rounded-xl hover:bg-green-50 transition-all duration-300"
-            >
+                href="/pengguna"
+                class="flex items-center justify-center group-hover:justify-start gap-4 h-14 px-4 rounded-xl hover:bg-green-50 transition-all duration-300">
 
                 <i class="fa-solid fa-user-group text-xl text-green-700 w-6 text-center"></i>
 
@@ -57,6 +74,37 @@
 
             </a>
         </li>
+        <div class="flex justify-end mb-4">
+
+            <form action="/logout" method="POST" onsubmit="return confirm('Yakin ingin logout?')" >
+                @csrf
+
+                <button
+                    type="submit"
+                    class="
+                        flex
+                        items-center
+                        gap-2
+                        px-4
+                        py-2
+                        bg-red-500
+                        hover:bg-red-600
+                        text-white
+                        rounded-xl
+                        shadow
+                        transition-all
+                    "
+                >
+
+                    <i data-lucide="log-out"></i>
+
+                    Logout
+
+                </button>
+
+            </form>
+
+        </div>
 
     </ul>
 

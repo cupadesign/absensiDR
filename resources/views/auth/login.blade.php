@@ -20,7 +20,25 @@
                 <h1 class="text-3xl font-bold text-gray-800">Absensi RSDS</h1>
                 <p class="text-gray-500 mt-2">Integrasi SIMGOS</p>
             </div>
+            {{-- ERROR --}}
+            @if(session('error'))
 
+                <div
+                    class="
+                        bg-red-100
+                        border
+                        border-red-300
+                        text-red-700
+                        px-4
+                        py-3
+                        rounded-xl
+                        mb-4
+                    "
+                >
+                    {{ session('error') }}
+                </div>
+
+            @endif
             {{-- FORM USERNAME --}}
             <form method="POST" action="/login/check-user" class="space-y-5">
                 @csrf

@@ -74,4 +74,14 @@ class User extends Authenticatable
 
         ];
     }
+    /*
+    |--------------------------------------------------------------------------
+    | AUTH PASSWORD
+    |--------------------------------------------------------------------------
+    */
+
+    public function getAuthPassword()
+    {
+        return $this->PASSWORD;
+    }
 }

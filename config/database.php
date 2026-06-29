@@ -89,13 +89,13 @@ return [
         'simgos' => [
             'driver' => 'mysql',
 
-            'host' => env('DB_SIMGOS_HOST', '10.10.11.200'),
+            'host' => env('DB_SIMGOS_HOST', '10.10.11.7'),
             'port' => env('DB_SIMGOS_PORT', '3306'),
 
             'database' => env('DB_SIMGOS_DATABASE', 'master'),
 
             'username' => env('DB_SIMGOS_USERNAME', 'admin'),
-            'password' => env('DB_SIMGOS_PASSWORD', 'S!MGos2@kemkes.go.id'),
+            'password' => env('DB_SIMGOS_PASSWORD', '#J@g4D4ta@rsudrslamet'),
 
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
@@ -121,13 +121,13 @@ return [
         'aplikasi' => [
             'driver' => 'mysql',
 
-            'host' => env('DB_APLIKASI_HOST', '10.10.11.200'),
+            'host' => env('DB_APLIKASI_HOST', '10.10.11.7'),
             'port' => env('DB_APLIKASI_PORT', '3306'),
 
             'database' => env('DB_APLIKASI_DATABASE', 'aplikasi'),
 
             'username' => env('DB_APLIKASI_USERNAME', 'admin'),
-            'password' => env('DB_APLIKASI_PASSWORD', 'S!MGos2@kemkes.go.id'),
+            'password' => env('DB_APLIKASI_PASSWORD', '#J@g4D4ta@rsudrslamet'),
 
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',

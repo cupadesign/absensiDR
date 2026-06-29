@@ -51,8 +51,11 @@
 
                 </div>
 
-                <div class="bg-green-100 text-green-700 text-[10px] px-2 py-1 rounded-full">
-                    Dalam Radius
+                <div
+                    id="geoStatus"
+                    class="bg-yellow-100 text-yellow-700 text-[10px] px-2 py-1 rounded-full"
+                >
+                    Mengecek...
                 </div>
 
             </div>
@@ -75,6 +78,23 @@
 
                     <p id="coords" class="text-xs font-medium text-gray-700 truncate">
                         Mendeteksi...
+                    </p>
+
+                </div>
+                <div class="bg-gray-50 rounded-2xl p-3">
+
+                    <div class="flex items-center gap-2 mb-1">
+
+                        <i data-lucide="map-pin" class="w-4 h-4 text-red-600"></i>
+
+                        <span class="text-xs text-gray-500">
+                            Jarak
+                        </span>
+
+                    </div>
+
+                    <p id="distance" class="text-xs font-medium text-gray-700">
+                        --
                     </p>
 
                 </div>
@@ -103,8 +123,12 @@
             {{-- BUTTON --}}
             <div class="grid grid-cols-2 gap-2">
 
-                <button id="absenBtn" class="py-3 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-600 text-white text-sm font-semibold shadow-md active:scale-95 transition">
-                    ABSEN
+                <button
+                    id="absenBtn"
+                    class="py-3 rounded-2xl bg-gray-300 text-white text-sm font-semibold cursor-not-allowed"
+                    disabled
+                >
+                    MENDETEKSI LOKASI...
                 </button>
 
                 <button class="py-3 rounded-2xl bg-gray-100 text-gray-700 text-sm font-semibold active:scale-95 transition">
@@ -142,26 +166,138 @@ document.addEventListener('DOMContentLoaded', () => {
     const coordsText = document.getElementById('coords');
     const timeText = document.getElementById('time');
     const absenBtn = document.getElementById('absenBtn');
+    const geoStatus = document.getElementById('geoStatus');
+    const distanceText = document.getElementById('distance');
 
     // WAKTU
     timeText.innerText = new Date().toLocaleString();
 
     // GPS
-    navigator.geolocation.getCurrentPosition((position) => {
+    navigator.geolocation.getCurrentPosition(
 
-        const lat = position.coords.latitude;
-        const lng = position.coords.longitude;
+        (position) => {
 
-        coordsText.innerText = `${lat}, ${lng}`;
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            const accuracy = position.coords.accuracy;
 
-        L.marker([lat, lng])
-            .addTo(map)
-            .bindPopup('Lokasi Anda')
-            .openPopup();
+            document.getElementById('lat').value = lat;
+            document.getElementById('lng').value = lng;
+            document.getElementById('accuracy').value = accuracy;
 
-        map.setView([lat, lng], 19);
+            coordsText.innerText =
+                `${lat}, ${lng}`;
 
-    });
+            L.marker([lat, lng])
+                .addTo(map)
+                .bindPopup('Lokasi Anda')
+                .openPopup();
+
+            map.setView([lat, lng], 19);
+
+            checkGeofence(
+                lat,
+                lng,
+                accuracy
+            );
+
+        },
+
+        (error) => {
+
+            geoStatus.innerHTML =
+                'GPS Tidak Aktif';
+
+            geoStatus.className =
+                'bg-red-100 text-red-700 text-[10px] px-2 py-1 rounded-full';
+
+        },
+
+        {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
+        }
+
+    );
+
+    async function checkGeofence(
+        lat,
+        lng,
+        accuracy
+    ) {
+
+        try {
+
+            const response = await fetch(
+                '/absensi/check-geofence',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN':
+                            '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        LATITUDE: lat,
+                        LONGITUDE: lng,
+                        ACCURACY: accuracy
+                    })
+                }
+            );
+
+            const data = await response.json();
+
+            distanceText.innerHTML =
+                Math.round(data.distance) + ' Meter';
+
+            if (data.inside) {
+
+                geoStatus.innerHTML =
+                    'Dalam Radius';
+
+                geoStatus.className =
+                    'bg-green-100 text-green-700 text-[10px] px-2 py-1 rounded-full';
+
+                absenBtn.disabled = false;
+
+                absenBtn.innerHTML =
+                    'ABSEN';
+
+                absenBtn.className =
+                    'py-3 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-600 text-white text-sm font-semibold shadow-md active:scale-95 transition';
+
+            } else {
+
+                geoStatus.innerHTML =
+                    'Diluar Radius';
+
+                geoStatus.className =
+                    'bg-red-100 text-red-700 text-[10px] px-2 py-1 rounded-full';
+
+                absenBtn.disabled = true;
+
+                absenBtn.innerHTML =
+                    'DILUAR AREA';
+
+                absenBtn.className =
+                    'py-3 rounded-2xl bg-gray-300 text-white text-sm font-semibold cursor-not-allowed';
+
+            }
+
+        } catch (error) {
+
+            console.error(error);
+
+            geoStatus.innerHTML =
+                'Gagal Cek Lokasi';
+
+            geoStatus.className =
+                'bg-red-100 text-red-700 text-[10px] px-2 py-1 rounded-full';
+
+        }
+
+    }
 
     // BUTTON ABSEN
     absenBtn.addEventListener('click', () => {

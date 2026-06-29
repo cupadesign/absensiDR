@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\PenggunaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +16,16 @@ Route::get('/', function () {
     return redirect('/login');
 
 });
+Route::post(
+    '/absensi/check-geofence',
+    function () {
 
+        return response()->json([
+            'status' => 'OK'
+        ]);
+
+    }
+);
 
 /*
 |--------------------------------------------------------------------------
@@ -75,6 +87,55 @@ Route::middleware('auth')->group(function () {
         return view('absensi.index');
 
     });
+
+});
+/*
+|--------------------------------------------------------------------------
+| MASTER RUANGAN
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth')->group(function () {
+
+    Route::get(
+        '/ruangan',
+        [RoomController::class, 'index']
+    );
+
+    Route::post(
+        '/ruangan/store',
+        [RoomController::class, 'store']
+    );
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| KELOLA LAPORAN
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/laporan', function () {
+
+        return view('laporan.index');
+
+    });
+
+});
+
+
+/*--------------------------------------------------------------------------
+| KELOLA PENGGUNA
+|--------------------------------------------------------------------------
+*/
+Route::middleware('auth')->group(function () {
+
+    Route::get(
+        '/pengguna',
+        [PenggunaController::class, 'index']
+    );
 
 });
 
